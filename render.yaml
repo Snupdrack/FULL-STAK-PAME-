@@ -1,0 +1,27 @@
+# Render.com Configuration for CONER Backend
+# This file helps Render auto-detect and configure the deployment
+
+services:
+  - type: web
+    name: coner-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn server:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+    envVars:
+      - key: MONGO_URL
+        scope: env
+      - key: DB_NAME
+        scope: env
+      - key: JWT_SECRET
+        scope: secret
+      - key: CORS_ORIGINS
+        scope: env
+      - key: API_URL
+        scope: env
+      - key: API_KEY
+        scope: secret
+      - key: API_TIMEOUT
+        scope: env
+        value: "30"
+      - key: PYTHON_VERSION
+        value: "3.11"

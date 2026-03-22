@@ -1,0 +1,123 @@
+{
+  "identity": {
+    "name": "CONER - Consultores Especializados en Retiros",
+    "archetype": "Luxury & Corporate",
+    "tone": "Authoritative, Elegant, Trustworthy, Exclusive",
+    "emotional_goal": "Reassurance through precision and elegance. The user feels they are accessing a premium service."
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Playfair Display, serif",
+      "body": "Lato, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "scale": {
+      "h1": "text-5xl md:text-7xl font-bold tracking-tight",
+      "h2": "text-3xl md:text-5xl font-semibold tracking-tight",
+      "h3": "text-2xl md:text-3xl font-medium",
+      "body": "text-base md:text-lg leading-relaxed text-muted-foreground",
+      "label": "text-xs font-bold tracking-[0.2em] uppercase text-[#D4AF37]"
+    }
+  },
+  "colors": {
+    "palette": {
+      "background": "#050505",
+      "surface": "#0F0F0F",
+      "surface_highlight": "#1A1A1A",
+      "primary": "#D4AF37",
+      "primary_hover": "#B5952F",
+      "secondary": "#C9A830",
+      "text_primary": "#F5F5F5",
+      "text_secondary": "#A3A3A3",
+      "border": "#2A2A2A",
+      "error": "#991B1B",
+      "success": "#065F46"
+    },
+    "gradients": {
+      "gold_shine": "linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #C9A830 100%)",
+      "dark_fade": "linear-gradient(to bottom, transparent, #050505)",
+      "glass": "rgba(255, 255, 255, 0.03)"
+    }
+  },
+  "layout_strategy": {
+    "spacing": {
+      "container_padding": "p-6 md:p-12 lg:p-20",
+      "section_gap": "gap-12 md:gap-24",
+      "element_gap": "gap-6"
+    },
+    "grid_systems": {
+      "landing": "grid-cols-1 md:grid-cols-12 gap-8 (Hero centered: col-start-2 col-end-12)",
+      "dashboard": "grid-cols-1 md:grid-cols-4 gap-4 (High density)",
+      "result_view": "Bento Grid: Personal Data (col-span-1), History (col-span-3)"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#D4AF37] text-black hover:bg-[#B5952F] font-bold px-8 py-3 rounded-sm shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all active:scale-95",
+      "secondary": "bg-transparent border border-[#D4AF37]/50 text-[#D4AF37] hover:bg-[#D4AF37]/10",
+      "ghost": "text-zinc-400 hover:text-white hover:bg-white/5"
+    },
+    "inputs": {
+      "default": "bg-[#0A0A0A] border border-white/10 text-white placeholder:text-zinc-600 focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] h-14 px-6 rounded-sm transition-all",
+      "error": "border-red-900 focus:border-red-500"
+    },
+    "cards": {
+      "glass": "bg-white/5 backdrop-blur-md border border-white/5 rounded-lg shadow-xl",
+      "solid": "bg-[#0F0F0F] border border-white/10 rounded-lg"
+    },
+    "toasts": "Use Sonner. Style: bg-[#1A1A1A] border border-[#D4AF37]/20 text-white"
+  },
+  "assets": {
+    "logo_url": "/logo.png",
+    "backgrounds": [
+      {
+        "url": "https://images.unsplash.com/photo-1761437855740-c894da924d79?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBkYXJrJTIwYmFja2dyb3VuZCUyMGdvbGQlMjBhYnN0cmFjdCUyMGxpbmVzfGVufDB8fHx8MTc3NDExNDU4N3ww&ixlib=rb-4.1.0&q=85",
+        "category": "hero_bg",
+        "desc": "Golden metallic lines, abstract luxury"
+      },
+      {
+        "url": "https://images.pexels.com/photos/352097/pexels-photo-352097.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "category": "texture_overlay",
+        "desc": "Golden grid lines"
+      }
+    ],
+    "context_images": [
+      {
+        "url": "https://images.unsplash.com/photo-1726669638427-434afc1947bb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzcyUyMG1lZXRpbmclMjBzaWxob3VldHRlJTIwZGFya3xlbnwwfHx8fDE3NzQxMTQ1ODh8MA&ixlib=rb-4.1.0&q=85",
+        "category": "professional_context",
+        "desc": "Dark silhouette of office chair/table"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1696861270495-7f35c35c3273?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHw0fHxjb3Jwb3JhdGUlMjBoYW5kc2hha2UlMjBjbG9zZSUyMHVwJTIwZGFya3xlbnwwfHx8fDE3NzQxMTQ1OTB8MA&ixlib=rb-4.1.0&q=85",
+        "category": "trust_symbol",
+        "desc": "Handshake close up"
+      }
+    ]
+  },
+  "animations": {
+    "page_transition": "initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5, ease: 'easeOut' }}",
+    "hover_lift": "hover:-translate-y-1 transition-transform duration-300",
+    "shimmer": "animate-pulse"
+  },
+  "libraries": {
+    "pdf_export": "@react-pdf/renderer",
+    "icons": "lucide-react",
+    "notifications": "sonner",
+    "animations": "framer-motion"
+  },
+  "instructions_to_main_agent": [
+    "Install @react-pdf/renderer immediately.",
+    "Configure tailwind.config.js to include the custom gold colors (#D4AF37) as 'gold'.",
+    "Set the font family in standard CSS: Heading -> Playfair Display, Body -> Lato.",
+    "Ensure all backgrounds use the dark palette (#050505). NEVER use pure black (#000000) for large surfaces, only for contrast.",
+    "The 'Result Page' must look like a high-end bank statement or certificate.",
+    "Use the provided Logo in the Header (Left aligned) and Footer (Centered).",
+    "Admin panel must be protected and distinct, but share the dark theme."
+  ],
+  "UNIVERSAL_GUIDELINES": [
+    "Avoid gradients for text unless it's a specific gold effect.",
+    "Use data-testid on all inputs and buttons.",
+    "Do not center text in the body paragraphs; keep it left-aligned for readability.",
+    "Use 24px-32px gaps between form elements."
+  ]
+}

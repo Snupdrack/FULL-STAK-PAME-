@@ -1,0 +1,25 @@
+# Secrets
+.env
+.env.local
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+venv/
+venv_test/
+.venv/
+
+# Node
+node_modules/
+dist/
+build/
+
+# OS / editor
+Thumbs.db
+.DS_Store
+.qodo/
+
+# Misc
+.gitconfig
