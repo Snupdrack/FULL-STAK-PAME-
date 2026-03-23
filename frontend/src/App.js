@@ -5,6 +5,8 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import HomePage from "@/pages/HomePage";
 import AdminLogin from "@/pages/AdminLogin";
 import AdminPanel from "@/pages/AdminPanel";
+import Login from "@/pages/Login";
+import AuthGuard from "@/components/AuthGuard";
 
 function App() {
   return (
@@ -12,7 +14,8 @@ function App() {
       <div className="App min-h-screen bg-[#050505]">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<AuthGuard><HomePage /></AuthGuard>} />
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/admin/panel" element={<AdminPanel />} />
           </Routes>

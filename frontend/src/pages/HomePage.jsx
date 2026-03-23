@@ -246,6 +246,10 @@ export default function HomePage() {
     try {
       const response = await axios.post(`${API}/historial-laboral`, {
         curp: curp.toUpperCase(),
+      }, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user_token")}`
+        }
       });
 
       if (response.data.status === "success") {
@@ -282,13 +286,29 @@ export default function HomePage() {
               className="h-12 w-auto logo-pulse"
             />
           </a>
-          <a 
-            href="/admin" 
-            className="text-[#A3A3A3] hover:text-[#D4AF37] transition-colors text-sm font-medium"
-            data-testid="admin-link"
-          >
-            Administrador
-          </a>
+          <div className="flex items-center gap-4">
+            <span className="text-[#A3A3A3] text-sm">
+              Bienvenido, {localStorage.getItem("user_username") || "Usuario"}
+            </span>
+            <Button
+              onClick={() => {
+                localStorage.removeItem("user_token");
+                localStorage.removeItem("user_username");
+                window.location.href = "/login";
+              }}
+              variant="outline"
+              className="border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#050505]"
+            >
+              Cerrar Sesión
+            </Button>
+            <a 
+              href="/admin" 
+              className="text-[#A3A3A3] hover:text-[#D4AF37] transition-colors text-sm font-medium"
+              data-testid="admin-link"
+            >
+              Administrador
+            </a>
+          </div>
         </div>
       </header>
 

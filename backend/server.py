@@ -88,7 +88,18 @@ class AdminUser(BaseModel):
     password_hash: str
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
+class User(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    username: str
+    password_hash: str
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
 class AdminLogin(BaseModel):
+    username: str
+    password: str
+
+class UserLogin(BaseModel):
     username: str
     password: str
 
@@ -179,7 +190,7 @@ async def health_check():
 # ----- HISTORIAL LABORAL -----
 
 @api_router.post("/historial-laboral", response_model=HistorialResponse)
-async def consultar_historial(query: CURPQuery):
+async def consultar_historial(query: CURPQuery, username: str = Depends(verify_token)):
     """Consulta el historial laboral usando la CURP"""
     config = await get_admin_config()
 
@@ -323,6 +334,39 @@ async def check_admin_setup():
     """Verificar si ya existe un usuario administrador"""
     count = await db.admin_users.count_documents({})
     return {"admin_exists": count > 0}
+
+# ----- USER AUTH -----
+
+@api_router.post("/register", response_model=TokenResponse)
+async def register(credentials: UserLogin):
+    """Registro de usuario"""
+    existing = await db.users.find_one({"username": credentials.username}, {"_id": 0})
+    if existing:
+        raise HTTPException(status_code=400, detail="Usuario ya existe")
+    
+    user = User(
+        username=credentials.username,
+        password_hash=hash_password(credentials.password)
+    )
+    doc = user.model_dump()
+    await db.users.insert_one(doc)
+    
+    token = create_token(credentials.username)
+    return TokenResponse(access_token=token, username=credentials.username)
+
+@api_router.post("/login", response_model=TokenResponse)
+async def login(credentials: UserLogin):
+    """Login de usuario"""
+    user = await db.users.find_one({"username": credentials.username}, {"_id": 0})
+    
+    if not user:
+        raise HTTPException(status_code=401, detail="Credenciales inválidas")
+    
+    if not verify_password(credentials.password, user["password_hash"]):
+        raise HTTPException(status_code=401, detail="Credenciales inválidas")
+    
+    token = create_token(credentials.username)
+    return TokenResponse(access_token=token, username=credentials.username)
 
 # ----- ADMIN CONFIG -----
 
